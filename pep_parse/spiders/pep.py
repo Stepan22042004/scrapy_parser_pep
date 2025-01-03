@@ -6,7 +6,8 @@ from pep_parse.items import PepParseItem
 class PepSpider(scrapy.Spider):
     name = 'pep'
     allowed_domains = ['peps.python.org']
-    start_urls = ['https://peps.python.org/']
+    start_urls = ['https://' + domain + '/' for domain in allowed_domains]
+    print(start_urls)
 
     def parse(self, response):
         urls = response.css('a[href^="pep"]')
@@ -15,8 +16,9 @@ class PepSpider(scrapy.Spider):
 
     def parse_pep(self, response):
         info = response.css('title::text').get().split(' ')
+        lst = response.css('title::text').get().split(' – ')[1]
         number = info[1]
-        name = response.css('title::text').get().split(' | ')[0]
+        name = lst[:len(lst) - len(' | peps.python.org'):]
 
         data = {
             'name': name,
