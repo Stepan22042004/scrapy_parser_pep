@@ -1,12 +1,15 @@
 from pathlib import Path
 
 
+BASE_DIR = Path(__file__).parent.parent
+
 RESULT_FOLDER = 'results'
 
 BOT_NAME = 'pep_parse'
 
-SPIDER_MODULES = [f'{BOT_NAME}.spiders']
 NEWSPIDER_MODULE = f'{BOT_NAME}.spiders'
+SPIDER_MODULES = [NEWSPIDER_MODULE]
+
 
 ITEM_PIPELINES = {
     'pep_parse.pipelines.PepParsePipeline': 300,
@@ -20,7 +23,5 @@ FEEDS = {
         'fields': ['number', 'name', 'status'],
     },
 }
-
-BASE_DIR = Path(__file__).parent.parent
 
 DATETIME_FORMAT = '%Y-%m-%d_%H-%M-%S'
