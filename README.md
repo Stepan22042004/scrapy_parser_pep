@@ -48,7 +48,7 @@ scrapy crawl pep
 ### Язык программирования и фреймворк:
   Python: основной язык программирования.\
   Scrapy\
-  ORM SQLAlchemy\
+  ORM SQLAlchemy
 ### Тестирование:
   Pytest: для написания тестов.
 
